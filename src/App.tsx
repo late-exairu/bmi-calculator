@@ -8,10 +8,13 @@ function App() {
   const [heightUnit, setHeightUnit] = useState<string>("cm");
   const [weightUnit, setWeightUnit] = useState<string>("kg");
   const [bmi, setBmi] = useState<number>(0);
+  const [bmiDescription, setBmiDescription] =
+    useState<string>("Healthy weight");
 
   useEffect(() => {
     let fullBmi: number = 0;
 
+    // calculate BMI
     if (heightUnit === "cm" && weightUnit === "kg") {
       fullBmi = weight / Math.pow(height / 100, 2);
     } else if (heightUnit === "cm" && weightUnit === "lb") {
@@ -21,6 +24,22 @@ function App() {
     } else if (heightUnit === "ft" && weightUnit === "lb") {
       fullBmi = weight / 2.205 / Math.pow(height / 3.281, 2);
     }
+
+    // set BMI description
+    if (fullBmi < 18.5) {
+      setBmiDescription("Underweight");
+    } else if (fullBmi >= 18.5 && fullBmi < 25) {
+      setBmiDescription("Healthy weight");
+    } else if (fullBmi >= 25 && fullBmi < 30) {
+      setBmiDescription("Overweight");
+    } else if (fullBmi >= 30 && fullBmi < 35) {
+      setBmiDescription("Obese Class I");
+    } else if (fullBmi >= 35 && fullBmi < 40) {
+      setBmiDescription("Obese Class II");
+    } else if (fullBmi >= 40) {
+      setBmiDescription("Obese Class III");
+    }
+
     return setBmi(Math.round(fullBmi * 100) / 100); // round to 2 decimal places
   }, [height, weight, heightUnit, weightUnit]);
 
@@ -42,11 +61,11 @@ function App() {
   );
 
   return (
-    <div className="flex-0 flex max-w-md flex-col items-center justify-center rounded-3xl border border-blue-200 bg-blue-100 p-5">
+    <div className="flex-0 flex max-w-sm flex-col items-center justify-center rounded-3xl border border-blue-200 bg-blue-100 p-5">
       <h1 className="mb-4 text-xl font-bold">BMI Calculator</h1>
 
       <div className="flex flex-col gap-5">
-        <p className="">
+        {/* <p className="text-xs">
           height: {height}
           <br />
           weight: {weight}
@@ -57,6 +76,10 @@ function App() {
           <br />
           bmi: {bmi}
           <br />
+        </p> */}
+        <p className="text-sm text-slate-500">
+          BMI is a measurement of a person's leanness or corpulence based on
+          their height and weight, and is intended to quantify tissue mass.
         </p>
         {data.map((item, i) => (
           <div key={i} className="flex flex-wrap gap-x-2">
@@ -75,7 +98,7 @@ function App() {
                   ? setHeight(parseInt(e.target.value))
                   : setWeight(parseInt(e.target.value))
               }
-              className="h-10 w-80 flex-1 rounded-md border-2 border-gray-300 px-3"
+              className="h-10 w-80 min-w-0 flex-1 rounded-md border-2 border-gray-300 px-3"
             />
             <select
               className="h-10  w-80 flex-1 rounded-md border-2 border-gray-300 px-3"
@@ -97,7 +120,7 @@ function App() {
         {bmi ?? bmi > 0 ? (
           <div className="flex justify-end">
             <p className={`${bmiColor} `}>
-              <span>BMI: {bmi}</span>
+              BMI: {bmi} ({bmiDescription})
             </p>
           </div>
         ) : null}
