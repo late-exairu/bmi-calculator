@@ -61,7 +61,7 @@ function App() {
   );
 
   return (
-    <div className="flex-0 flex max-w-sm flex-col items-center justify-center rounded-3xl border border-blue-200 bg-blue-100 p-5">
+    <div className="flex-0 flex min-w-0 max-w-sm flex-col items-center justify-center rounded-2xl border border-blue-200 bg-blue-100 p-3 sm:rounded-3xl sm:p-5">
       <h1 className="mb-4 text-xl font-bold">BMI Calculator</h1>
 
       <div className="flex flex-col gap-5">
@@ -98,10 +98,10 @@ function App() {
                   ? setHeight(parseInt(e.target.value))
                   : setWeight(parseInt(e.target.value))
               }
-              className="h-10 w-80 min-w-0 flex-1 rounded-md border-2 border-none border-gray-300 px-3 shadow-sm outline-offset-2 transition-shadow focus-visible:shadow-md focus-visible:outline-2 focus-visible:outline-blue-300"
+              className="h-10 w-full min-w-0 flex-1 rounded-md border-2 border-none border-gray-300 px-3 shadow-sm outline-offset-2 transition-shadow focus-visible:shadow-md focus-visible:outline-2 focus-visible:outline-blue-300"
             />
             <select
-              className="h-10  w-80 flex-1 rounded-md border-2 border-none border-gray-300 px-3 shadow-sm outline-offset-2 transition-shadow focus-visible:shadow-md focus-visible:outline-4 focus-visible:outline-blue-300"
+              className="h-10 w-full flex-1 rounded-md border-2 border-none border-gray-300 px-3 shadow-sm outline-offset-2 transition-shadow focus-visible:shadow-md focus-visible:outline-4 focus-visible:outline-blue-300"
               onChange={(e) => {
                 item.label === "Height"
                   ? setHeightUnit(e.target.value)
@@ -118,7 +118,16 @@ function App() {
         ))}
 
         {bmi ?? bmi > 0 ? (
-          <div className="flex justify-end">
+          <div className="flex flex-col-reverse justify-between sm:flex-row">
+            <p>
+              <a
+                href="https://en.wikipedia.org/wiki/Body_mass_index"
+                className="text-sm text-blue-500 underline hover:no-underline"
+                target="_blank"
+              >
+                More info
+              </a>
+            </p>
             <p className={`${bmiColor} `}>
               BMI: {bmi} ({bmiDescription})
             </p>
