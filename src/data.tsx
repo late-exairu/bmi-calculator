@@ -7,7 +7,7 @@ export const data = [
         value: "cm",
       },
       {
-        label: "Foots",
+        label: "Feet",
         value: "ft",
       },
     ],

@@ -13,17 +13,23 @@ function App() {
 
   useEffect(() => {
     let fullBmi: number = 0;
+    let weightValue: number = 0;
+    let heightValue: number = 0;
 
     // calculate BMI
-    if (heightUnit === "cm" && weightUnit === "kg") {
-      fullBmi = weight / Math.pow(height / 100, 2);
-    } else if (heightUnit === "cm" && weightUnit === "lb") {
-      fullBmi = weight / 2.205 / Math.pow(height / 100, 2);
-    } else if (heightUnit === "ft" && weightUnit === "kg") {
-      fullBmi = weight / Math.pow(height / 3.281, 2);
-    } else if (heightUnit === "ft" && weightUnit === "lb") {
-      fullBmi = weight / 2.205 / Math.pow(height / 3.281, 2);
+    if (weightUnit === "kg") {
+      weightValue = weight;
+    } else if (weightUnit === "lb") {
+      weightValue = weight / 2.205;
     }
+
+    if (heightUnit === "cm") {
+      heightValue = height / 100;
+    } else if (heightUnit === "ft") {
+      heightValue = height / 3.281;
+    }
+
+    fullBmi = weightValue / Math.pow(heightValue, 2);
 
     // set BMI description
     if (fullBmi < 18.5) {
@@ -65,6 +71,7 @@ function App() {
       <h1 className="mb-4 text-xl font-bold">BMI Calculator</h1>
 
       <div className="flex flex-col gap-5">
+        {/* debug */}
         {/* <p className="text-xs">
           height: {height}
           <br />
