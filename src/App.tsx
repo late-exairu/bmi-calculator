@@ -67,8 +67,8 @@ function App() {
   );
 
   return (
-    <div className="flex-0 flex min-w-0 max-w-sm flex-col items-center justify-center rounded-2xl border border-blue-200 bg-blue-100 p-3 sm:rounded-3xl sm:p-5">
-      <h1 className="mb-4 text-xl font-bold">BMI Calculator</h1>
+    <div className="flex-0 flex min-w-0 max-w-sm flex-col items-center justify-center rounded-2xl border-blue-200 bg-white p-5 font-medium shadow-xl shadow-blue-700/20 sm:rounded-3xl sm:p-8">
+      <h1 className="mb-4 text-2xl font-black text-blue-700">BMI Calculator</h1>
 
       <div className="flex flex-col gap-5">
         {/* debug */}
@@ -84,13 +84,13 @@ function App() {
           bmi: {bmi}
           <br />
         </p> */}
-        <p className="text-sm text-slate-500">
+        <p className="text-sm font-normal text-slate-500">
           BMI is a measurement of a person's leanness or corpulence based on
           their height and weight, and is intended to quantify tissue mass.
         </p>
         {data.map((item, i) => (
           <div key={i} className="flex flex-wrap gap-x-2">
-            <label className="mb-1 block w-full">{item.label}</label>
+            <label className="mb-1 block w-full text-sm">{item.label}</label>
             <input
               type="number"
               value={
@@ -105,10 +105,10 @@ function App() {
                   ? setHeight(parseInt(e.target.value))
                   : setWeight(parseInt(e.target.value))
               }
-              className="h-10 w-full min-w-0 flex-1 rounded-md border-2 border-none border-gray-300 px-3 shadow-sm outline-offset-2 transition-shadow focus-visible:shadow-md focus-visible:outline-2 focus-visible:outline-blue-300"
+              className="h-10 w-full min-w-0 flex-1 rounded-md border-2 border-none border-gray-300 px-3 shadow-[0_2px_5px_0_rgba(0,0,0,0.1)] outline-offset-2 transition-shadow focus-visible:shadow-md focus-visible:outline-2 focus-visible:outline-blue-300"
             />
             <select
-              className="h-10 w-full flex-1 rounded-md border-2 border-none border-gray-300 px-3 shadow-sm outline-offset-2 transition-shadow focus-visible:shadow-md focus-visible:outline-4 focus-visible:outline-blue-300"
+              className="h-10 w-full flex-1 rounded-md border-2 border-none border-gray-300 px-3  shadow-[0_2px_5px_0_rgba(0,0,0,0.1)] outline-offset-2 transition-shadow focus-visible:shadow-md focus-visible:outline-4 focus-visible:outline-blue-300"
               onChange={(e) => {
                 item.label === "Height"
                   ? setHeightUnit(e.target.value)
