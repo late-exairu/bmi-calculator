@@ -105,10 +105,10 @@ function App() {
                   ? setHeight(parseInt(e.target.value))
                   : setWeight(parseInt(e.target.value))
               }
-              className="h-10 w-full min-w-0 flex-1 rounded-md border-2 border-none border-gray-300 px-3 shadow-[0_2px_5px_0_rgba(0,0,0,0.1)] outline-offset-2 transition-shadow focus-visible:shadow-md focus-visible:outline-2 focus-visible:outline-blue-300"
+              className="h-10 w-full min-w-0 flex-1 rounded-md border-b border-blue-100 px-3 shadow-[0_2px_5px_0_rgba(0,0,0,0.1)] outline-offset-2 transition-shadow focus-visible:shadow-md focus-visible:outline-2 focus-visible:outline-blue-300"
             />
             <select
-              className="h-10 w-full flex-1 rounded-md border-2 border-none border-gray-300 px-3  shadow-[0_2px_5px_0_rgba(0,0,0,0.1)] outline-offset-2 transition-shadow focus-visible:shadow-md focus-visible:outline-4 focus-visible:outline-blue-300"
+              className="h-10 w-full flex-1 rounded-md border-b border-blue-100 px-3  shadow-[0_2px_5px_0_rgba(0,0,0,0.1)] outline-offset-2 transition-shadow focus-visible:shadow-md focus-visible:outline-4 focus-visible:outline-blue-300"
               onChange={(e) => {
                 item.label === "Height"
                   ? setHeightUnit(e.target.value)
